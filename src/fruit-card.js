@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { withStyles } from 'material-ui/styles'
 import Card, { CardMedia, CardContent, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
+
+import { addToCart } from './app-actions'
 
 const styles = theme => ({
   fruitCard: {}
@@ -12,7 +15,10 @@ const styles = theme => ({
 class FruitCard extends React.Component {
 
   render () {
-    const { classes, fruit } = this.props;
+    const { classes, fruit , addToCart } = this.props;
+
+    let disableAdd = fruit.quantityRemaining ? false : true;
+
     return (
       <Card>
         <CardContent>
@@ -23,12 +29,14 @@ class FruitCard extends React.Component {
             {fruit.itemName}
           </Typography>
           <div>
-            <span>${fruit.price}</span> {fruit.quantityRemaining} in stock
+            <span className="product-price">${fruit.price}</span> {fruit.quantityRemaining} in stock
           </div>
         </CardContent>
         <CardActions>
           <Button raised
             color="primary"
+            onClick={() => addToCart(fruit)}
+            disabled={disableAdd}
           >Add to Cart</Button>
         </CardActions>
       </Card>
@@ -40,4 +48,9 @@ FruitCard.propTypes = {
   fruit: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(FruitCard);
+export default connect(
+  (state) => ({}),
+  (dispatch) => ({
+    addToCart: (fruit) => dispatch(addToCart(fruit)),
+  })
+)(withStyles(styles)(FruitCard));

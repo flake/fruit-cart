@@ -1,5 +1,7 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
 import { createLogger } from 'redux-logger'
+
+import app from './app-reducer'
 
 const logger = createLogger();
 
@@ -10,8 +12,6 @@ export default createStore(
   {},
   compose(
     applyMiddleware(
-      router,
-      epicMiddleware,
       logger
     ),
   )
