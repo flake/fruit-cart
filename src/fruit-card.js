@@ -49,7 +49,9 @@ FruitCard.propTypes = {
 }
 
 export default connect(
-  (state) => ({}),
+  (state) => ({
+    totalCount: state.app.totalItems,
+  }),
   (dispatch) => ({
     addToCart: (fruit) => dispatch(addToCart(fruit)),
   })

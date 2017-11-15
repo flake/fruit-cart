@@ -19,3 +19,11 @@ export const decreaseQuantity = (itemName) => ({
   type: AppActions.ITEM.DECREASE,
   name: itemName
 });
+
+export const confirmPurchase = () => ({
+  type: AppActions.CART.PURCHASE
+});
+
+export const clearCart = () => ({
+  type: AppActions.CART.CLEAR
+})

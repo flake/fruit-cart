@@ -8,6 +8,22 @@ body {
   display: flex;
   flex-direction: row;
 }
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.app-toolbar {
+  border-bottom: 3px solid #32C996;
+  background-color: white;
+}
+.fruits-title {
+  color: white;
+  background: #32C996;
+  padding: 8px 16px;
+  font-weight: 900;
+  font-size: 20px;
+  margin-top: 24px;
+}
 .product-price {
   font-size: 28px;
   font-weight: 600;
@@ -58,4 +74,7 @@ body {
   text-align: right;
   padding: 8px;
   font-weight: 900;
+}
+.cart-actions {
+  padding: 0 16px;
 }

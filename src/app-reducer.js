@@ -71,6 +71,26 @@ export default (state = getInitialState(), action) => {
         }
       }
       return state;
+    case AppActions.CART.PURCHASE:
+      return {
+        ...state,
+        cartItems: {},
+        totalItems: 0
+      }
+    case AppActions.CART.CLEAR:
+      let clearFruits = [...state.fruits];
+      for (let ckey in state.cartItems) {
+        let sindex = clearFruits.findIndex(f => f.itemName === ckey);
+        console.log("sindex ", sindex, state.cartItems[ckey]);
+        clearFruits[sindex].quantityRemaining = clearFruits[sindex].quantityRemaining + state.cartItems[ckey].quantity;
+        console.log("clearFruits ", clearFruits);
+      }
+      return {
+        ...state,
+        fruits: clearFruits,
+        cartItems: {},
+        totalItems: 0
+      }
     default:
       return state;
   }

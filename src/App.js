@@ -15,7 +15,8 @@ import { loadFruits } from './app-actions'
 
 const muiTheme = createMuiTheme({
   palette: {
-    primary: {...teal, 500: "#32C996" }
+    primary: {...teal, 500: "#32C996" },
+    secondary: {...teal, 500: '#6FD9B5'}
   }
 });
 
@@ -34,11 +35,11 @@ class App extends Component {
       <MuiThemeProvider theme={muiTheme}>
         <div>
           <AppBar position="static" color="default">
-            <Toolbar>
-              <span>Fruits</span>
+            <Toolbar className="app-toolbar">
+              <span className="fruits-title">Fruits</span>
             </Toolbar>
           </AppBar>
-          <Grid container spacing={8}>
+          <Grid container spacing={8} style={{marginTop: '8px'}}>
             <Grid item lg={9}>
               <FruitList fruits={fruits} />
             </Grid>

@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Button from 'material-ui/Button'
 
 import CartItem from './cart-item'
+import { confirmPurchase, clearCart } from './app-actions'
 
 class ShoppingCart extends React.Component {
 
   render () {
 
-    const { items, totalItems } = this.props;
+    const { items, totalItems, clearCart, confirmPurchase } = this.props;
 
     let itemKeys = Object.keys(items);
     let totalAmount = 0;
@@ -27,6 +29,14 @@ class ShoppingCart extends React.Component {
         }
         <hr className= "cart-hrline" />
         <div className="cart-total">Total: ${totalAmount}</div>
+
+        <div className="flex-column cart-actions">
+          <Button color="default" onClick={() => clearCart()}>Empty Cart</Button>
+          <Button raised
+          color="secondary"
+          onClick={() => confirmPurchase()}
+          >Confirm Purchase</Button>
+        </div>
       </div>
     )
   }
@@ -37,5 +47,8 @@ export default connect (
     items: state.app.cartItems,
     totalItems: state.app.totalItems
   }),
-  (dispatch) => ({})
+  (dispatch) => ({
+    confirmPurchase: () => dispatch(confirmPurchase()),
+    clearCart: () => dispatch(clearCart())
+  })
 )(ShoppingCart);
